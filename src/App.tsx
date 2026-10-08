@@ -15,6 +15,8 @@ import { PublicBusinessView } from './components/public/PublicBusinessView';
 import { AdminLayout } from './components/admin/AdminLayout';
 import { BusinessOrderModal } from './components/common/BusinessOrderModal';
 
+import { DEKLogo } from './components/common/DEKLogo';
+
 const AppContent: React.FC = () => {
   const {
     activeView,
@@ -126,12 +128,12 @@ const AppContent: React.FC = () => {
   // Show clean loading spinner while initializing
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0d1520] text-slate-100 flex flex-col items-center justify-center p-6 text-center select-none">
-        <div className="w-14 h-14 rounded-2xl bg-sky-500 text-slate-950 flex items-center justify-center font-black text-2xl shadow-xl shadow-sky-500/20 mb-4 animate-pulse">
-          <span>D</span>
+      <div className="min-h-screen bg-[#05070B] text-slate-100 flex flex-col items-center justify-center p-6 text-center select-none bg-cosmic-grid">
+        <div className="mb-4">
+          <DEKLogo size="lg" variant="symbol" animated={true} />
         </div>
-        <h2 className="text-base font-bold text-white mb-1">Cargando sitio web...</h2>
-        <p className="text-xs text-sky-300">Conectando catálogo y configuración</p>
+        <h2 className="text-base font-bold text-white mb-1 font-['Outfit']">Cargando D.E.K NovaCore...</h2>
+        <p className="text-xs text-cyan-400 font-mono">Conectando catálogo y configuración</p>
       </div>
     );
   }
@@ -149,14 +151,14 @@ const AppContent: React.FC = () => {
 
     // If a slug was requested but no business matched
     return (
-      <div className="min-h-screen bg-[#0d1520] text-slate-100 flex flex-col items-center justify-center p-6 text-center">
-        <div className="max-w-lg w-full p-8 rounded-2xl bg-[#16222f] border border-slate-700/80 shadow-2xl space-y-5">
-          <div className="w-14 h-14 rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center mx-auto text-2xl font-bold">
+      <div className="min-h-screen bg-[#05070B] text-slate-100 flex flex-col items-center justify-center p-6 text-center bg-cosmic-grid">
+        <div className="max-w-lg w-full p-8 rounded-2xl bg-[#080D18] border border-slate-800 shadow-2xl space-y-5">
+          <div className="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center justify-center mx-auto text-2xl font-bold font-mono">
             !
           </div>
           <div>
-            <h2 className="text-xl font-bold text-white">Negocio no encontrado</h2>
-            <p className="text-xs text-sky-200 mt-1">
+            <h2 className="text-xl font-bold text-white font-['Outfit']">Negocio no encontrado</h2>
+            <p className="text-xs text-slate-400 mt-1">
               {currentPublicSlug
                 ? `No se encontró ningún negocio registrado con el enlace "/#negocio/${currentPublicSlug}".`
                 : 'No hay ningún negocio seleccionado para mostrar.'}
@@ -165,7 +167,7 @@ const AppContent: React.FC = () => {
 
           {businesses.length > 0 && (
             <div className="pt-2 text-left">
-              <span className="text-[11px] font-bold text-sky-400 uppercase tracking-wider block mb-2 text-center">
+              <span className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider block mb-2 text-center font-mono">
                 Negocios disponibles en la plataforma:
               </span>
               <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
@@ -173,20 +175,20 @@ const AppContent: React.FC = () => {
                   <button
                     key={`${biz.id}-${idx}`}
                     onClick={() => goToPublicStore(biz.slug)}
-                    className="w-full p-2.5 rounded-xl bg-[#0f1722] hover:bg-slate-800 border border-slate-700 flex items-center justify-between text-left transition-colors cursor-pointer group"
+                    className="w-full p-2.5 rounded-xl bg-[#05070B] hover:bg-blue-950/40 border border-slate-800 flex items-center justify-between text-left transition-colors cursor-pointer group"
                   >
                     <div className="flex items-center gap-2.5">
                       <img src={biz.logoUrl} alt={biz.name} className="w-8 h-8 rounded-lg object-cover" />
                       <div>
-                        <span className="text-xs font-bold text-white group-hover:text-sky-300 block">
+                        <span className="text-xs font-bold text-white group-hover:text-cyan-300 block font-['Outfit']">
                           {biz.name}
                         </span>
-                        <span className="text-[10px] text-sky-400 font-mono">
+                        <span className="text-[10px] text-cyan-400 font-mono">
                           /#negocio/{biz.slug}
                         </span>
                       </div>
                     </div>
-                    <span className="text-[11px] font-bold text-sky-400 group-hover:translate-x-1 transition-transform">
+                    <span className="text-[11px] font-bold text-cyan-400 group-hover:translate-x-1 transition-transform">
                       Abrir &rarr;
                     </span>
                   </button>
@@ -198,7 +200,7 @@ const AppContent: React.FC = () => {
           <div className="pt-2 flex justify-center">
             <button
               onClick={goToLanding}
-              className="px-5 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold rounded-xl cursor-pointer shadow-md"
+              className="btn-sheen px-5 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-400 text-slate-950 text-xs font-bold rounded-xl cursor-pointer shadow-md font-['Outfit']"
             >
               Ir a la Página de Inicio
             </button>
@@ -215,7 +217,7 @@ const AppContent: React.FC = () => {
 
   // Default: Landing Page
   return (
-    <div className="min-h-screen bg-[#0d1520] text-slate-100 flex flex-col transition-colors duration-200 selection:bg-sky-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[#05070B] text-slate-100 flex flex-col transition-colors duration-200 selection:bg-cyan-400 selection:text-slate-950">
       {/* Sticky Navigation */}
       <Navbar
         onOpenOrderModal={() => handleOpenOrderModal('Plan Pro')}

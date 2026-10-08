@@ -28,6 +28,7 @@ import { SettingsView } from './SettingsView';
 import { OrdersManagerView } from './OrdersManagerView';
 import { AdminLoginView } from './AdminLoginView';
 import { QRCodeModal } from '../common/QRCodeModal';
+import { DEKLogo } from '../common/DEKLogo';
 
 export const AdminLayout: React.FC = () => {
   const {
@@ -51,13 +52,13 @@ export const AdminLayout: React.FC = () => {
   // Pantalla de carga mientras se verifica la sesión
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0d1520] flex flex-col items-center justify-center p-4 text-center text-white">
-        <div className="w-10 h-10 border-3 border-sky-400 border-t-transparent rounded-full animate-spin mb-4" />
-        <h3 className="text-sm font-bold text-white tracking-wide">
+      <div className="min-h-screen bg-[#05070B] flex flex-col items-center justify-center p-4 text-center text-white bg-cosmic-grid">
+        <div className="w-10 h-10 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin mb-4" />
+        <h3 className="text-sm font-bold text-white tracking-wide font-['Outfit']">
           Verificando sesión administrativa...
         </h3>
-        <p className="text-xs text-slate-400 mt-1">
-          D. E. K NovaCore — Panel de Control
+        <p className="text-xs text-cyan-400 font-mono mt-1">
+          D.E.K NovaCore — Panel de Control
         </p>
       </div>
     );
@@ -86,60 +87,53 @@ export const AdminLayout: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0d1520] text-slate-100 flex flex-col transition-colors">
+    <div className="min-h-screen bg-[#05070B] text-slate-100 flex flex-col transition-colors selection:bg-cyan-400 selection:text-slate-950">
       {/* Top Header */}
-      <header className="bg-[#16222f] dark:bg-[#111a24] border-b border-slate-700/80 sticky top-0 z-30 px-4 sm:px-6 py-3 flex items-center justify-between shadow-md">
+      <header className="bg-[#080D18] border-b border-white/[0.08] sticky top-0 z-30 px-4 sm:px-6 py-3 flex items-center justify-between shadow-lg">
         {/* Left: Mobile Toggle & Brand Logo */}
         <div className="flex items-center gap-3">
           <button
             onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
-            className="md:hidden p-2 rounded-xl text-sky-200 hover:text-white hover:bg-slate-800 cursor-pointer"
+            className="md:hidden p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer"
           >
-            {mobileSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileSidebarOpen ? <X className="w-5 h-5 text-cyan-400" /> : <Menu className="w-5 h-5" />}
           </button>
 
           <div
             onClick={goToLanding}
-            className="cursor-pointer flex items-center gap-2.5 select-none"
+            className="cursor-pointer flex items-center gap-2.5 select-none transition-opacity hover:opacity-95"
           >
-            <div className="w-9 h-9 rounded-xl bg-sky-500 text-slate-950 flex items-center justify-center font-black text-sm shadow">
-              <span>D</span>.E
-            </div>
-            <div className="hidden sm:flex flex-col">
-              <span className="font-extrabold text-sm tracking-tight leading-none text-white">
-                D. E. K <span className="text-sky-400">NovaCore</span>
-              </span>
-              <span className="text-[10px] font-bold uppercase text-sky-300/80">
-                Panel Administrador
-              </span>
-            </div>
+            <DEKLogo size="xs" variant="horizontal" showSubtitle={false} />
+            <span className="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#05070B] text-cyan-400 border border-blue-900/40 uppercase">
+              Admin
+            </span>
           </div>
         </div>
 
         {/* Center: Active Business Switcher Dropdown */}
         <div className="flex items-center gap-2">
-          <span className="hidden lg:inline text-xs font-semibold text-sky-200">
+          <span className="hidden lg:inline text-xs font-semibold text-slate-400">
             Negocio Activo:
           </span>
           <div className="relative">
             <select
               value={selectedBusinessId}
               onChange={(e) => setSelectedBusinessId(e.target.value)}
-              className="text-xs font-bold py-2 pl-3 pr-8 rounded-xl bg-[#0f1722] border border-slate-700/80 text-white focus:outline-none focus:ring-2 focus:ring-sky-400 cursor-pointer appearance-none shadow-sm max-w-[200px] sm:max-w-xs truncate"
+              className="text-xs font-bold py-2 pl-3 pr-8 rounded-xl bg-[#05070B] border border-slate-800 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 cursor-pointer appearance-none shadow-sm max-w-[200px] sm:max-w-xs truncate"
             >
               {businesses.map((b, idx) => (
-                <option key={`${b.id}-${idx}`} value={b.id} className="bg-[#16222f] text-white">
+                <option key={`${b.id}-${idx}`} value={b.id} className="bg-[#080D18] text-white">
                   {b.name} ({b.template})
                 </option>
               ))}
             </select>
-            <ChevronDown className="w-3.5 h-3.5 text-sky-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <ChevronDown className="w-3.5 h-3.5 text-cyan-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
           {activeBusiness && (
             <button
               onClick={() => openBusinessWebsite(activeBusiness)}
-              className="hidden sm:flex items-center gap-1.5 px-3.5 py-2 bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold rounded-xl shadow transition-all cursor-pointer"
+              className="hidden sm:flex items-center gap-1.5 px-3.5 py-2 bg-gradient-to-r from-blue-600 to-cyan-400 hover:from-blue-500 hover:to-cyan-300 text-slate-950 text-xs font-bold rounded-xl shadow transition-all cursor-pointer font-['Outfit']"
               title={`Visitar sitio web oficial: ${activeBusiness.websiteUrl || activeBusiness.slug}`}
             >
               <Globe className="w-3.5 h-3.5" />
@@ -154,16 +148,16 @@ export const AdminLayout: React.FC = () => {
           {activeBusiness && (
             <button
               onClick={() => setIsQRModalOpen(true)}
-              className="p-2 text-sky-200 hover:text-white hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
+              className="p-2 text-slate-400 hover:text-white hover:bg-[#0B1220] rounded-xl transition-colors cursor-pointer"
               title="Código QR del sitio web"
             >
-              <QrCode className="w-4 h-4" />
+              <QrCode className="w-4 h-4 text-cyan-400" />
             </button>
           )}
 
           <button
             onClick={() => setActiveTab('settings')}
-            className="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-[#0f1722] text-sky-300 border border-slate-700/80 text-[11px] font-semibold hover:border-sky-500/50 cursor-pointer"
+            className="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-[#05070B] text-slate-300 border border-slate-800 text-[11px] font-semibold hover:border-cyan-500/50 cursor-pointer font-mono"
             title="Conexión Supabase PostgreSQL"
           >
             <Database className="w-3.5 h-3.5 text-emerald-400" />
@@ -172,13 +166,13 @@ export const AdminLayout: React.FC = () => {
 
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-xl text-sky-200 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#0B1220] transition-colors cursor-pointer"
             title="Cambiar tema"
           >
-            {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-sky-300" />}
+            {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-cyan-400" />}
           </button>
 
-          <div className="h-5 w-px bg-slate-700 hidden sm:block" />
+          <div className="h-5 w-px bg-slate-800 hidden sm:block" />
 
           {/* User badge & Logout */}
           <div className="flex items-center gap-1.5">
@@ -216,14 +210,14 @@ export const AdminLayout: React.FC = () => {
       <div className="flex-1 flex overflow-hidden">
         {/* Sidebar */}
         <aside
-          className={`fixed inset-y-0 left-0 z-40 w-64 bg-[#111a24] border-r border-slate-700/80 flex flex-col justify-between pt-16 md:pt-0 transform transition-transform duration-200 md:static md:translate-x-0 ${
-            mobileSidebarOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'
+          className={`fixed inset-y-0 left-0 z-40 w-64 bg-[#080D18] border-r border-white/[0.08] flex flex-col justify-between pt-16 md:pt-0 transform transition-transform duration-200 md:static md:translate-x-0 ${
+            mobileSidebarOpen ? 'translate-x-0 shadow-2xl shadow-black' : '-translate-x-full'
           }`}
         >
           {/* Navigation Items */}
           <div className="p-4 space-y-2">
-            <div className="text-[11px] font-extrabold uppercase tracking-wider text-sky-400 px-3 py-2 flex items-center gap-2">
-              <Layers className="w-3.5 h-3.5 text-sky-400" />
+            <div className="text-[11px] font-bold uppercase tracking-wider text-cyan-400 font-mono px-3 py-2 flex items-center gap-2">
+              <Layers className="w-3.5 h-3.5 text-cyan-400" />
               <span>Menú Principal</span>
             </div>
 
@@ -239,12 +233,12 @@ export const AdminLayout: React.FC = () => {
                   }}
                   className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                     isActive
-                      ? 'bg-sky-500 text-slate-950 font-bold shadow-md shadow-sky-500/20 border border-sky-400'
-                      : 'bg-[#16222f] text-sky-200 border border-slate-700/80 hover:bg-sky-950/70 hover:text-white hover:border-sky-500/50 shadow-sm'
+                      ? 'bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-400 text-slate-950 font-black shadow-lg shadow-cyan-500/20'
+                      : 'bg-[#0B1220] text-slate-300 border border-slate-800/80 hover:bg-[#0f172a] hover:text-white hover:border-cyan-500/40 shadow-sm'
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <Icon className={`w-4 h-4 ${isActive ? 'text-slate-950' : 'text-sky-300'}`} />
+                    <Icon className={`w-4 h-4 ${isActive ? 'text-slate-950' : 'text-cyan-400'}`} />
                     <span>{item.label}</span>
                   </div>
                   {item.badge !== undefined && (
@@ -252,7 +246,7 @@ export const AdminLayout: React.FC = () => {
                       className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${
                         isActive
                           ? 'bg-slate-950 text-white'
-                          : 'bg-emerald-500 text-slate-950'
+                          : 'bg-cyan-400 text-slate-950'
                       }`}
                     >
                       {item.badge}
@@ -264,19 +258,19 @@ export const AdminLayout: React.FC = () => {
           </div>
 
           {/* Sidebar Footer: Active Business Card & Admin Profile */}
-          <div className="p-4 space-y-2.5 border-t border-slate-700/80">
+          <div className="p-4 space-y-2.5 border-t border-white/[0.08]">
             {activeBusiness && (
-              <div className="p-3 rounded-xl bg-[#16222f] border border-slate-700/80 flex items-center gap-2.5">
+              <div className="p-3 rounded-xl bg-[#0B1220] border border-slate-800/80 flex items-center gap-2.5">
                 <img
                   src={activeBusiness.logoUrl}
                   alt={activeBusiness.name}
-                  className="w-9 h-9 rounded-lg object-cover border border-slate-700"
+                  className="w-9 h-9 rounded-lg object-cover border border-slate-800"
                 />
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs font-bold text-white truncate">
+                  <div className="text-xs font-bold text-white truncate font-['Outfit']">
                     {activeBusiness.name}
                   </div>
-                  <div className="text-[10px] text-emerald-400 font-semibold truncate">
+                  <div className="text-[10px] text-cyan-400 font-semibold truncate font-mono">
                     /#negocio/{activeBusiness.slug}
                   </div>
                 </div>
@@ -284,16 +278,16 @@ export const AdminLayout: React.FC = () => {
             )}
 
             {/* Current user card with logout */}
-            <div className="p-2.5 rounded-xl bg-[#16222f] border border-slate-700/80 flex items-center justify-between gap-2">
+            <div className="p-2.5 rounded-xl bg-[#0B1220] border border-slate-800/80 flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 min-w-0">
-                <div className="w-7 h-7 rounded-lg bg-sky-500 text-slate-950 font-bold text-xs flex items-center justify-center shrink-0">
+                <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-blue-600 to-cyan-400 text-slate-950 font-black text-xs flex items-center justify-center shrink-0">
                   {user.email ? user.email.charAt(0).toUpperCase() : 'A'}
                 </div>
                 <div className="min-w-0">
                   <div className="text-[11px] font-bold text-white truncate">
                     {user.email}
                   </div>
-                  <div className="text-[9px] text-sky-300">
+                  <div className="text-[9px] text-cyan-400 font-mono">
                     Administrador
                   </div>
                 </div>

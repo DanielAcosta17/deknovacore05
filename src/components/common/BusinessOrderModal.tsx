@@ -102,26 +102,26 @@ export const BusinessOrderModal: React.FC<BusinessOrderModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto animate-fade-in">
-      <div className="relative w-full max-w-lg bg-[#16222f] dark:bg-[#111a24] rounded-2xl shadow-2xl border border-slate-700/80 my-8 overflow-hidden text-white">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4 overflow-y-auto animate-fade-in">
+      <div className="relative w-full max-w-lg bg-[#080D18] rounded-2xl shadow-2xl shadow-black/90 border border-blue-900/40 my-8 overflow-hidden text-white">
         {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b border-slate-700/80 bg-[#111a24]">
+        <div className="flex items-center justify-between p-5 border-b border-white/[0.08] bg-[#05070B]">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-sky-500 text-slate-950 flex items-center justify-center font-black shadow-md">
-              <Sparkles className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-400 text-slate-950 flex items-center justify-center font-black shadow-md shadow-cyan-500/20">
+              <Sparkles className="w-5 h-5 fill-current" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-white">
+              <h3 className="text-base font-bold text-white font-['Outfit']">
                 Hacer Pedido para tu Negocio
               </h3>
-              <p className="text-xs text-sky-300">
+              <p className="text-xs text-cyan-400 font-medium">
                 Solicita tu catálogo digital, menú QR y tienda con WhatsApp
               </p>
             </div>
           </div>
           <button
             onClick={handleResetAndClose}
-            className="p-2 text-sky-300 hover:text-white rounded-lg hover:bg-slate-800 transition-colors cursor-pointer"
+            className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-white/[0.06] transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -129,40 +129,40 @@ export const BusinessOrderModal: React.FC<BusinessOrderModalProps> = ({
 
         {isSubmitted ? (
           <div className="p-8 text-center space-y-5">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center mx-auto">
+            <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/10">
               <CheckCircle2 className="w-9 h-9" />
             </div>
             <div>
-              <h4 className="text-lg font-bold text-white">
+              <h4 className="text-lg font-bold text-white font-['Outfit']">
                 ¡Pedido de Negocio Registrado!
               </h4>
-              <p className="text-xs text-sky-200 mt-2 max-w-sm mx-auto leading-relaxed">
+              <p className="text-xs text-slate-300 mt-2 max-w-sm mx-auto leading-relaxed">
                 Tu solicitud ha sido guardada en nuestra base de datos con el código{' '}
-                <span className="font-mono font-bold text-sky-400">
+                <span className="font-mono font-bold text-cyan-400">
                   #{submittedId.slice(-6).toUpperCase()}
                 </span>
                 . Se ha abierto tu WhatsApp para confirmar los detalles directamente con nuestro equipo.
               </p>
             </div>
 
-            <div className="p-3.5 bg-[#0f1722] rounded-xl border border-slate-700 text-xs text-left space-y-1.5 text-sky-200">
+            <div className="p-4 bg-[#05070B] rounded-xl border border-slate-800 text-xs text-left space-y-2 text-slate-300 font-mono">
               <div className="flex justify-between">
-                <span className="text-slate-400">Negocio:</span>
-                <span className="font-bold text-white">{businessName}</span>
+                <span className="text-slate-500">Negocio:</span>
+                <span className="font-bold text-white font-sans">{businessName}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-400">Plan:</span>
-                <span className="font-bold text-sky-400">{selectedPlan}</span>
+                <span className="text-slate-500">Plan:</span>
+                <span className="font-bold text-cyan-400 font-sans">{selectedPlan}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-400">Contacto:</span>
-                <span className="font-semibold text-white">{contactName} ({phone})</span>
+                <span className="text-slate-500">Contacto:</span>
+                <span className="font-semibold text-white font-sans">{contactName} ({phone})</span>
               </div>
             </div>
 
             <button
               onClick={handleResetAndClose}
-              className="w-full py-3 px-4 bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold rounded-xl transition-all shadow-md cursor-pointer"
+              className="btn-sheen w-full py-3 px-4 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-400 hover:from-blue-500 hover:to-cyan-300 text-slate-950 text-xs font-bold rounded-xl transition-all shadow-md cursor-pointer font-['Outfit']"
             >
               Cerrar y Volver
             </button>
@@ -171,8 +171,8 @@ export const BusinessOrderModal: React.FC<BusinessOrderModalProps> = ({
           <form onSubmit={handleSubmit} className="p-6 space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold text-sky-200 mb-1 flex items-center gap-1.5">
-                  <Store className="w-3.5 h-3.5 text-sky-400" />
+                <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center gap-1.5 font-['Outfit']">
+                  <Store className="w-3.5 h-3.5 text-cyan-400" />
                   Nombre de tu Negocio *
                 </label>
                 <input
@@ -181,19 +181,19 @@ export const BusinessOrderModal: React.FC<BusinessOrderModalProps> = ({
                   placeholder="Ej: Pastelería Dulce Arte"
                   value={businessName}
                   onChange={(e) => setBusinessName(e.target.value)}
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-700 bg-[#0f1722] text-white placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-sky-400"
+                  className="w-full px-3 py-2.5 text-xs rounded-xl border border-slate-800 bg-[#05070B] text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/20"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-sky-200 mb-1 flex items-center gap-1.5">
-                  <Layers className="w-3.5 h-3.5 text-sky-400" />
+                <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center gap-1.5 font-['Outfit']">
+                  <Layers className="w-3.5 h-3.5 text-cyan-400" />
                   Rubro / Tipo de Negocio
                 </label>
                 <select
                   value={businessType}
                   onChange={(e) => setBusinessType(e.target.value)}
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-700 bg-[#0f1722] text-white focus:outline-none focus:ring-1 focus:ring-sky-400 cursor-pointer"
+                  className="w-full px-3 py-2.5 text-xs rounded-xl border border-slate-800 bg-[#05070B] text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/20 cursor-pointer"
                 >
                   <option value="Restaurante / Menú QR">Restaurante / Menú QR</option>
                   <option value="Pastelería / Repostería">Pastelería / Repostería</option>
@@ -210,8 +210,8 @@ export const BusinessOrderModal: React.FC<BusinessOrderModalProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold text-sky-200 mb-1 flex items-center gap-1.5">
-                  <User className="w-3.5 h-3.5 text-sky-400" />
+                <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center gap-1.5 font-['Outfit']">
+                  <User className="w-3.5 h-3.5 text-cyan-400" />
                   Nombre de Contacto *
                 </label>
                 <input
@@ -220,13 +220,13 @@ export const BusinessOrderModal: React.FC<BusinessOrderModalProps> = ({
                   placeholder="Ej: Daniel Acosta"
                   value={contactName}
                   onChange={(e) => setContactName(e.target.value)}
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-700 bg-[#0f1722] text-white placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-sky-400"
+                  className="w-full px-3 py-2.5 text-xs rounded-xl border border-slate-800 bg-[#05070B] text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/20"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-sky-200 mb-1 flex items-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 text-sky-400" />
+                <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center gap-1.5 font-['Outfit']">
+                  <Phone className="w-3.5 h-3.5 text-cyan-400" />
                   Tu WhatsApp / Teléfono *
                 </label>
                 <input
@@ -235,15 +235,15 @@ export const BusinessOrderModal: React.FC<BusinessOrderModalProps> = ({
                   placeholder="Ej: +507 6123-4567"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-700 bg-[#0f1722] text-white placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-sky-400"
+                  className="w-full px-3 py-2.5 text-xs rounded-xl border border-slate-800 bg-[#05070B] text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/20"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold text-sky-200 mb-1 flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-sky-400" />
+                <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center gap-1.5 font-['Outfit']">
+                  <MapPin className="w-3.5 h-3.5 text-cyan-400" />
                   Ciudad / País
                 </label>
                 <input
@@ -251,19 +251,19 @@ export const BusinessOrderModal: React.FC<BusinessOrderModalProps> = ({
                   placeholder="Ej: Ciudad de Panamá, Panamá"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-700 bg-[#0f1722] text-white placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-sky-400"
+                  className="w-full px-3 py-2.5 text-xs rounded-xl border border-slate-800 bg-[#05070B] text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/20"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-sky-200 mb-1 flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
+                <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center gap-1.5 font-['Outfit']">
+                  <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
                   Plan o Paquete Deseado
                 </label>
                 <select
                   value={selectedPlan}
                   onChange={(e) => setSelectedPlan(e.target.value)}
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-700 bg-[#0f1722] text-white focus:outline-none focus:ring-1 focus:ring-sky-400 cursor-pointer"
+                  className="w-full px-3 py-2.5 text-xs rounded-xl border border-slate-800 bg-[#05070B] text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/20 cursor-pointer"
                 >
                   <option value="Plan Básico ($15/mes)">Plan Básico ($15/mes)</option>
                   <option value="Plan Pro ($29/mes)">Plan Pro ($29/mes) - Recomendado</option>
@@ -274,8 +274,8 @@ export const BusinessOrderModal: React.FC<BusinessOrderModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-sky-200 mb-1 flex items-center gap-1.5">
-                <FileText className="w-3.5 h-3.5 text-sky-400" />
+              <label className="block text-xs font-bold text-slate-300 mb-1 flex items-center gap-1.5 font-['Outfit']">
+                <FileText className="w-3.5 h-3.5 text-cyan-400" />
                 ¿Qué características especiales necesitas?
               </label>
               <textarea
@@ -283,15 +283,15 @@ export const BusinessOrderModal: React.FC<BusinessOrderModalProps> = ({
                 placeholder="Ej: Necesito código QR en acrílico, 50 productos, cálculo de delivery y dominio propio..."
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                className="w-full px-3 py-2 text-xs rounded-xl border border-slate-700 bg-[#0f1722] text-white placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-sky-400"
+                className="w-full px-3 py-2.5 text-xs rounded-xl border border-slate-800 bg-[#05070B] text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/20"
               />
             </div>
 
-            <div className="pt-2 border-t border-slate-700/80">
+            <div className="pt-2 border-t border-white/[0.08]">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-bold text-sm rounded-xl flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-600/30 transition-all cursor-pointer disabled:opacity-50"
+                className="btn-sheen w-full py-3.5 px-4 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-400 hover:from-blue-500 hover:to-cyan-300 text-slate-950 font-black text-sm rounded-xl flex items-center justify-center gap-2.5 shadow-xl shadow-cyan-500/20 transition-all cursor-pointer disabled:opacity-50 font-['Outfit']"
               >
                 <MessageCircle className="w-5 h-5 fill-current" />
                 <span>
@@ -299,7 +299,7 @@ export const BusinessOrderModal: React.FC<BusinessOrderModalProps> = ({
                 </span>
                 <ArrowRight className="w-4 h-4 ml-auto" />
               </button>
-              <p className="text-[11px] text-center text-sky-300/80 mt-2">
+              <p className="text-[11px] text-center text-slate-400 mt-2.5 font-mono">
                 Tu solicitud se registra de inmediato en la base de datos y se abre el chat directo para coordinar la entrega.
               </p>
             </div>

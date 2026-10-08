@@ -504,14 +504,14 @@ export const PublicBusinessView: React.FC<PublicBusinessViewProps> = ({ business
       </a>
 
       {/* Footer Powered By watermark */}
-      <footer className="py-6 border-t border-slate-700/80 text-center text-xs text-sky-200 bg-[#111a24] mt-auto">
+      <footer className="py-6 border-t border-white/[0.08] text-center text-xs text-slate-400 bg-[#05070B] mt-auto">
         <p>
           © {new Date().getFullYear()} {business.name} • Impulsado por{' '}
           <button
             onClick={goToLanding}
-            className="font-bold text-sky-400 hover:text-sky-300 hover:underline inline-flex items-center gap-1 cursor-pointer"
+            className="font-bold text-cyan-400 hover:text-cyan-300 hover:underline inline-flex items-center gap-1 cursor-pointer font-['Outfit']"
           >
-            D. E. K NovaCore
+            D.E.K NovaCore
           </button>
         </p>
       </footer>
