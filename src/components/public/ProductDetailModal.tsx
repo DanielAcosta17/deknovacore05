@@ -77,9 +77,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         {/* Product Image */}
         <div className="relative h-64 sm:h-72 w-full bg-slate-900">
           <img
-            src={product.imageUrl}
+            src={product.imageUrl || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80'}
             alt={product.name}
+            referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80';
+            }}
           />
           {product.isFeatured && (
             <div className="absolute top-4 left-4 px-3 py-1 bg-amber-500 text-slate-950 text-[11px] font-extrabold uppercase tracking-wide rounded-full shadow-md">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, type Variants } from 'motion/react';
 import {
   Sparkles,
@@ -12,6 +12,7 @@ import {
 import { useBusiness } from '../../contexts/BusinessContext';
 import { Business } from '../../types';
 import { DEKLogo } from '../common/DEKLogo';
+import heroShowcaseSrc from '../../assets/images/dek_hero_showcase_1791426332013.jpg';
 
 interface HeroProps {
   onOpenOrderModal?: () => void;
@@ -19,6 +20,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
   const { businesses } = useBusiness();
+  const [showcaseError, setShowcaseError] = useState(false);
 
   const handleScrollToExamples = () => {
     const el = document.getElementById('ejemplos-en-vivo');
@@ -33,7 +35,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
     return biz.slug.startsWith('http') ? biz.slug : `https://${biz.slug}.vercel.app`;
   };
 
-  const heroShowcaseSrc = '/src/assets/images/dek_hero_showcase_1791426332013.jpg';
+  const publicShowcaseFallback = '/images/dek_hero_showcase.jpg';
 
   // Animation variants
   const containerVariants: Variants = {
@@ -168,12 +170,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
               </div>
 
               {/* Showcase Banner Asset */}
-              <div className="relative aspect-[16/9] w-full overflow-hidden group">
+              <div className="relative aspect-[16/9] w-full overflow-hidden group bg-gradient-to-br from-[#080D18] to-[#05070B]">
                 <img
-                  src={heroShowcaseSrc}
+                  src={showcaseError ? publicShowcaseFallback : heroShowcaseSrc}
                   alt="D.E.K NovaCore Showcase de Sitios Web y Catálogos"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-700"
+                  onError={() => setShowcaseError(true)}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#05070B] via-transparent to-transparent opacity-80" />
 
@@ -252,11 +255,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
                     title={`Visitar sitio web oficial de ${biz.name}: ${targetUrl}`}
                   >
                     {/* Cover image header */}
-                    <div className="relative h-44 overflow-hidden">
+                    <div className="relative h-44 overflow-hidden bg-slate-900">
                       <img
                         src={biz.coverUrl}
                         alt={biz.name}
+                        referrerPolicy="no-referrer"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80';
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#080D18] via-black/30 to-transparent" />
 
@@ -283,7 +290,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
                         <img
                           src={biz.logoUrl}
                           alt={biz.name}
+                          referrerPolicy="no-referrer"
                           className="w-10 h-10 rounded-xl object-cover border border-white/20 shadow-md bg-[#05070B]"
+                          onError={(e) => {
+                            e.currentTarget.src = '/images/dek_logo_emblem.jpg';
+                          }}
                         />
                         <div className="text-white">
                           <div className="text-xs font-bold leading-tight drop-shadow truncate max-w-[170px] font-['Outfit']">

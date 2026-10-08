@@ -677,9 +677,13 @@ export const BusinessManagerView: React.FC<BusinessManagerViewProps> = ({
                   {/* Cover and header */}
                   <div className="relative h-32 w-full overflow-hidden bg-slate-800">
                     <img
-                      src={biz.coverUrl}
+                      src={biz.coverUrl || 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&auto=format&fit=crop&q=80'}
                       alt={biz.name}
+                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&auto=format&fit=crop&q=80';
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
 
@@ -697,9 +701,13 @@ export const BusinessManagerView: React.FC<BusinessManagerViewProps> = ({
 
                     <div className="absolute bottom-2.5 left-3 flex items-center gap-2.5">
                       <img
-                        src={biz.logoUrl}
+                        src={biz.logoUrl || '/images/dek_logo_emblem.jpg'}
                         alt={biz.name}
+                        referrerPolicy="no-referrer"
                         className="w-10 h-10 rounded-xl object-cover border-2 border-white bg-white shadow-sm"
+                        onError={(e) => {
+                          e.currentTarget.src = '/images/dek_logo_emblem.jpg';
+                        }}
                       />
                       <div className="text-white">
                         <h3 className="text-xs font-bold leading-tight drop-shadow truncate max-w-[180px]">

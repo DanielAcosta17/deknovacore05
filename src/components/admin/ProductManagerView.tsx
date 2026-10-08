@@ -304,9 +304,13 @@ export const ProductManagerView: React.FC<ProductManagerViewProps> = ({
                     <tr key={p.id} className="hover:bg-slate-800/40 transition-colors">
                       <td className="py-3 px-4 flex items-center gap-3">
                         <img
-                          src={p.imageUrl}
+                          src={p.imageUrl || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&auto=format&fit=crop&q=80'}
                           alt={p.name}
-                          className="w-11 h-11 rounded-xl object-cover border border-slate-700 shrink-0"
+                          referrerPolicy="no-referrer"
+                          className="w-11 h-11 rounded-xl object-cover border border-slate-700 shrink-0 bg-slate-900"
+                          onError={(e) => {
+                            e.currentTarget.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&auto=format&fit=crop&q=80';
+                          }}
                         />
                         <div>
                           <div className="font-bold text-white">

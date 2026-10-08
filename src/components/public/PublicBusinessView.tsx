@@ -142,9 +142,13 @@ export const PublicBusinessView: React.FC<PublicBusinessViewProps> = ({ business
       {/* Hero Cover Header */}
       <div className="relative h-60 sm:h-72 lg:h-80 w-full overflow-hidden bg-slate-800">
         <img
-          src={business.coverUrl}
+          src={business.coverUrl || 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&auto=format&fit=crop&q=80'}
           alt={business.name}
+          referrerPolicy="no-referrer"
           className="w-full h-full object-cover"
+          onError={(e) => {
+            e.currentTarget.src = 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&auto=format&fit=crop&q=80';
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20" />
 
@@ -153,9 +157,13 @@ export const PublicBusinessView: React.FC<PublicBusinessViewProps> = ({ business
           <div className="flex items-end gap-4">
             <div className="relative">
               <img
-                src={business.logoUrl}
+                src={business.logoUrl || '/images/dek_logo_emblem.jpg'}
                 alt={business.name}
+                referrerPolicy="no-referrer"
                 className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border-4 border-white dark:border-slate-800 shadow-xl bg-white"
+                onError={(e) => {
+                  e.currentTarget.src = '/images/dek_logo_emblem.jpg';
+                }}
               />
               <span className="absolute bottom-1 right-1 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full" title="Negocio Abierto" />
             </div>
@@ -374,10 +382,14 @@ export const PublicBusinessView: React.FC<PublicBusinessViewProps> = ({ business
                     {/* Image Box */}
                     <div className="relative h-44 sm:h-48 overflow-hidden bg-slate-900">
                       <img
-                        src={prod.imageUrl}
+                        src={prod.imageUrl || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop&q=80'}
                         alt={prod.name}
+                        referrerPolicy="no-referrer"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop&q=80';
+                        }}
                       />
                       {prod.isFeatured && (
                         <span className="absolute top-2.5 left-2.5 px-2 py-0.5 text-[10px] font-extrabold bg-amber-500 text-slate-950 rounded-full shadow">

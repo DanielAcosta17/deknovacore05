@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import officialEmblemSrc from '../../assets/images/dek_logo_emblem_1791426322376.jpg';
 
 interface DEKLogoProps {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -15,6 +16,9 @@ export const DEKLogo: React.FC<DEKLogoProps> = ({
   showSubtitle = true,
   animated = false,
 }) => {
+  const [imgError, setImgError] = useState(false);
+  const [triedFallback, setTriedFallback] = useState(false);
+
   // Dimension maps
   const emblemSizes = {
     xs: 'w-7 h-7',
@@ -40,8 +44,9 @@ export const DEKLogo: React.FC<DEKLogoProps> = ({
     xl: 'text-sm',
   };
 
-  // Official logo image generated directly from the user's uploaded brand identity
-  const officialEmblemSrc = '/src/assets/images/dek_logo_emblem_1791426322376.jpg';
+  // Official logo image imported directly so Vite bundles it into /dist/assets in production
+  // with public fallback if deployed on static CDN / Vercel
+  const publicEmblemFallback = '/images/dek_logo_emblem.jpg';
 
   const emblemElement = (
     <div
@@ -51,21 +56,32 @@ export const DEKLogo: React.FC<DEKLogoProps> = ({
     >
       {/* Specular ambient rim lighting */}
       <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 via-transparent to-cyan-400/20 pointer-events-none" />
-      <img
-        src={officialEmblemSrc}
-        alt="D.E.K NovaCore Logo"
-        referrerPolicy="no-referrer"
-        className="w-full h-full object-cover rounded-xl"
-        onError={(e) => {
-          // Fallback SVG in case image load fails
-          const target = e.currentTarget;
-          target.style.display = 'none';
-          const parent = target.parentElement;
-          if (parent) {
-            parent.classList.add('bg-gradient-to-br', 'from-[#080D18]', 'to-[#05070B]');
-          }
-        }}
-      />
+      
+      {!imgError ? (
+        <img
+          src={triedFallback ? publicEmblemFallback : officialEmblemSrc}
+          alt="D.E.K NovaCore Logo"
+          referrerPolicy="no-referrer"
+          className="w-full h-full object-cover rounded-xl"
+          onError={() => {
+            if (!triedFallback) {
+              setTriedFallback(true);
+            } else {
+              setImgError(true);
+            }
+          }}
+        />
+      ) : (
+        /* Pristine SVG Cyber Emblem Fallback */
+        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#080D18] via-[#0B1220] to-[#05070B]">
+          <svg viewBox="0 0 100 100" className="w-4/5 h-4/5 drop-shadow-[0_0_8px_rgba(0,217,255,0.6)]">
+            <polygon points="50,10 90,32 90,68 50,90 10,68 10,32" fill="none" stroke="#00D9FF" strokeWidth="4" />
+            <polygon points="50,22 80,38 80,62 50,78 20,62 20,38" fill="rgba(37,99,255,0.25)" stroke="#2563FF" strokeWidth="3" />
+            <path d="M50 24 L50 76 M22 39 L78 61 M22 61 L78 39" stroke="#00BFFF" strokeWidth="2" opacity="0.7" />
+            <circle cx="50" cy="50" r="7" fill="#00D9FF" />
+          </svg>
+        </div>
+      )}
       {/* Subtle orbital cyber ring highlight */}
       <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-cyan-400/20 pointer-events-none" />
     </div>

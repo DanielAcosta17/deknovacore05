@@ -124,9 +124,13 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ business }) => {
                       className="p-3 bg-[#0f1722] rounded-xl border border-slate-700/80 flex items-start gap-3"
                     >
                       <img
-                        src={item.product.imageUrl}
+                        src={item.product.imageUrl || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&auto=format&fit=crop&q=80'}
                         alt={item.product.name}
+                        referrerPolicy="no-referrer"
                         className="w-14 h-14 object-cover rounded-lg shrink-0 border border-slate-700"
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&auto=format&fit=crop&q=80';
+                        }}
                       />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-1">
